@@ -3,422 +3,692 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 21st Maanu 🍪</title>
+  <title>Happy 21st Maanu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Sacramento&family=Satisfy&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --pink-soft: #fce4ec;
+      --pink-light: #f8bbd0;
+      --pink-main: #f06292;
+      --pink-hot: #ec407a;
+      --pink-deep: #c2185b;
+      --lavender: #e1bee7;
+      --lavender-deep: #ce93d8;
+      --peach: #ffe0b2;
+      --rose: #fff0f3;
+      --cream: #fffaf5;
+      --blush: #ffeef2;
+      --gold-soft: #ffe082;
+      --text-dark: #4a2040;
+      --text-mid: #7c4d6e;
+      --text-light: #a87195;
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(240, 98, 146, 0.2);
+      --shadow-pink: rgba(236, 64, 122, 0.15);
+      --shadow-soft: rgba(0, 0, 0, 0.06);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      background: linear-gradient(160deg, #6B3F1F, #A0522D, #C8864E, #8B5E3C, #5C3317);
-      background-size: 400% 400%;
-      animation: bgShift 12s ease infinite;
+      background: linear-gradient(170deg, #fff5f7 0%, #fce4ec 25%, #f3e5f5 50%, #fce4ec 75%, #fff0f3 100%);
+      background-attachment: fixed;
       min-height: 100vh;
-      font-family: sans-serif;
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
       overflow-x: hidden;
+    }
+
+    /* ═══════ FLOATING HEARTS, PETALS & SPARKLES ═══════ */
+    .floating-things {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .float-item {
+      position: absolute;
+      top: -60px;
+      animation: floatDown var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      opacity: 0.6;
+      font-size: var(--size);
+      filter: drop-shadow(0 2px 4px rgba(236, 64, 122, 0.15));
+    }
+
+    @keyframes floatDown {
+      0%   { transform: translateY(-60px) rotate(0deg) translateX(0); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(110vh) rotate(var(--rot)) translateX(var(--drift)); opacity: 0; }
+    }
+
+    /* Soft moving gradient blobs */
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.3;
+      animation: blobMove 25s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob-1 { width: 600px; height: 600px; background: #f8bbd0; top: -15%; left: -10%; animation-delay: 0s; }
+    .blob-2 { width: 500px; height: 500px; background: #e1bee7; top: 50%; right: -15%; animation-delay: -8s; }
+    .blob-3 { width: 450px; height: 450px; background: #ffe0b2; bottom: -10%; left: 25%; animation-delay: -16s; }
+    .blob-4 { width: 350px; height: 350px; background: #f8bbd0; top: 20%; left: 60%; animation-delay: -4s; }
+
+    @keyframes blobMove {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(40px, -30px) scale(1.1); }
+      66%  { transform: translate(-20px, 20px) scale(0.95); }
+      100% { transform: translate(30px, -10px) scale(1.05); }
+    }
+
+    /* ═══════ SPARKLE CURSOR TRAIL ═══════ */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 16px;
+      animation: sparkleFade 0.8s ease-out forwards;
+    }
+
+    @keyframes sparkleFade {
+      0%   { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+      100% { opacity: 0; transform: scale(0) translateY(-40px) rotate(180deg); }
+    }
+
+    /* ═══════ NAVBAR ═══════ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      background: rgba(255, 245, 247, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(240, 98, 146, 0.12);
+      box-shadow: 0 2px 20px rgba(236, 64, 122, 0.06);
+    }
+
+    nav a {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink-main), var(--lavender-deep));
+      border-radius: 2px;
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover { color: var(--pink-hot); }
+    nav a:hover::after { width: 100%; }
+
+    /* ═══════ SECTIONS ═══════ */
+    section { position: relative; z-index: 1; }
+
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 700;
+      text-align: center;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink-main), var(--lavender-deep), var(--pink-main));
+      margin: 0 auto 16px;
+      border-radius: 4px;
+    }
+
+    /* ═══════ HERO ═══════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 30px 60px;
       position: relative;
     }
 
-    @keyframes bgShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .hero-hearts {
+      font-size: clamp(40px, 8vw, 70px);
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 1s 0.2s forwards;
     }
 
-    .cookie {
-      position: fixed;
-      top: -80px;
+    .hero-tagline {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(22px, 4vw, 36px);
+      color: var(--pink-main);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 1s 0.4s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(48px, 10vw, 110px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      color: var(--pink-deep);
+      text-shadow: 0 4px 30px rgba(236, 64, 122, 0.2);
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+
+    .hero-age {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(28px, 5vw, 48px);
+      color: var(--lavender-deep);
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+    }
+
+    .hero-message-card {
+      max-width: 660px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 32px 40px;
+      border-radius: 28px;
+      border: 2px solid var(--glass-border);
+      box-shadow: 0 8px 40px var(--shadow-pink), 0 2px 10px var(--shadow-soft);
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+    }
+
+    .hero-message-card::before {
+      content: '\2764\FE0F';
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 28px;
-      animation: fall linear infinite;
-      z-index: 0;
-      pointer-events: none;
-      user-select: none;
+      filter: drop-shadow(0 2px 6px rgba(236, 64, 122, 0.3));
     }
 
-    @keyframes fall {
-      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+    .hero-message-card p {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text-mid);
+      font-style: italic;
     }
 
-    .cookie:nth-child(1)  { left: 5%;   animation-duration: 6s;   animation-delay: 0s;    font-size: 24px; }
-    .cookie:nth-child(2)  { left: 12%;  animation-duration: 8s;   animation-delay: 1s;    font-size: 32px; }
-    .cookie:nth-child(3)  { left: 20%;  animation-duration: 5s;   animation-delay: 2s;    font-size: 20px; }
-    .cookie:nth-child(4)  { left: 30%;  animation-duration: 9s;   animation-delay: 0.5s;  font-size: 28px; }
-    .cookie:nth-child(5)  { left: 40%;  animation-duration: 7s;   animation-delay: 3s;    font-size: 22px; }
-    .cookie:nth-child(6)  { left: 50%;  animation-duration: 6.5s; animation-delay: 1.5s;  font-size: 30px; }
-    .cookie:nth-child(7)  { left: 58%;  animation-duration: 8.5s; animation-delay: 0.2s;  font-size: 26px; }
-    .cookie:nth-child(8)  { left: 67%;  animation-duration: 5.5s; animation-delay: 2.5s;  font-size: 34px; }
-    .cookie:nth-child(9)  { left: 75%;  animation-duration: 7.5s; animation-delay: 1s;    font-size: 22px; }
-    .cookie:nth-child(10) { left: 83%;  animation-duration: 9s;   animation-delay: 3.5s;  font-size: 28px; }
-    .cookie:nth-child(11) { left: 90%;  animation-duration: 6s;   animation-delay: 0.8s;  font-size: 24px; }
-    .cookie:nth-child(12) { left: 96%;  animation-duration: 8s;   animation-delay: 2s;    font-size: 30px; }
-    .cookie:nth-child(13) { left: 25%;  animation-duration: 7s;   animation-delay: 4s;    font-size: 20px; }
-    .cookie:nth-child(14) { left: 45%;  animation-duration: 5s;   animation-delay: 1.2s;  font-size: 26px; }
-    .cookie:nth-child(15) { left: 70%;  animation-duration: 9.5s; animation-delay: 0.4s;  font-size: 32px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeUp 1s 1.6s forwards;
+    }
 
-    header, .banner, .message-section, .music-section, .quote-section, .videos-section, .our-songs-section {
+    .hero-scroll span {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .scroll-hearts {
+      animation: heartBounce 2s ease-in-out infinite;
+      font-size: 18px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heartBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+
+    /* ═══════ PHOTO GALLERY STRIP ═══════ */
+    .photo-strip {
+      padding: 30px 0;
+      overflow: hidden;
       position: relative;
       z-index: 1;
     }
 
-    header {
-      width: 100%;
-      padding: 28px 40px;
-      color: #FFF5E4;
-      font-size: 22px;
-      font-weight: bold;
-      text-align: center;
-      font-style: italic;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-      letter-spacing: 1px;
+    .photo-strip::before,
+    .photo-strip::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
     }
 
-    .banner {
-      width: 100%;
-      height: 130px;
-      background: linear-gradient(90deg, #3B1A08, #6B3A1F, #3B1A08);
-      margin-top: 50px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      border-top: 4px dashed #C8864E;
-      border-bottom: 4px dashed #C8864E;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
+    .photo-strip::before { left: 0; background: linear-gradient(90deg, #fff5f7, transparent); }
+    .photo-strip::after  { right: 0; background: linear-gradient(-90deg, #fff5f7, transparent); }
 
-    .track {
+    .photo-track {
       display: flex;
-      gap: 8px;
-      animation: scroll 18s linear infinite;
+      gap: 18px;
+      animation: scrollPhotos 28s linear infinite;
       width: max-content;
     }
 
-    .track img {
-      height: 100px;
-      width: 115px;
+    .photo-track img {
+      height: 170px;
+      width: 190px;
       object-fit: cover;
-      border-radius: 8px;
-      border: 3px solid #C8864E;
+      border-radius: 20px;
+      border: 3px solid white;
+      box-shadow: 0 6px 24px var(--shadow-pink);
       flex-shrink: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @keyframes scroll {
+    .photo-track img:hover {
+      transform: scale(1.08) rotate(-2deg);
+      border-color: var(--pink-main);
+      box-shadow: 0 12px 40px rgba(236, 64, 122, 0.25);
+    }
+
+    @keyframes scrollPhotos {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    .banner:hover .track { animation-play-state: paused; }
+    .photo-strip:hover .photo-track { animation-play-state: paused; }
 
-    .message-section {
-      text-align: center;
-      padding: 50px 30px 10px;
-    }
-
-    .bday-title {
-      font-size: clamp(36px, 7vw, 72px);
-      font-weight: 900;
-      color: #FFF5E4;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      text-shadow: 3px 3px 0px #3B1A08, 6px 6px 15px rgba(0,0,0,0.5);
-      line-height: 1.1;
-      margin-bottom: 30px;
-    }
-
-    .bday-message {
-      max-width: 750px;
-      margin: 0 auto 40px;
-      font-size: 17px;
-      color: #FFF0DC;
-      line-height: 1.9;
-      font-style: italic;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-      background: rgba(59, 26, 8, 0.4);
-      padding: 25px 35px;
-      border-radius: 16px;
-      border: 2px solid rgba(200, 134, 78, 0.4);
-    }
-
-    /* Music */
-    .music-section {
+    /* ═══════ MUSIC PLAYER ═══════ */
+    .music-player {
+      padding: 50px 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
-      padding: 10px 20px 40px;
+      gap: 18px;
     }
 
-    .song-info {
-      color: #FFF0DC;
-      font-size: 14px;
-      font-style: italic;
-      letter-spacing: 1px;
-      opacity: 0.85;
-    }
-
-    .music-btn {
-      background: linear-gradient(135deg, #6B3A1F, #A0522D);
-      color: #FFF5E4;
-      border: 3px solid #C8864E;
-      border-radius: 50px;
-      padding: 14px 36px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      font-family: sans-serif;
-      letter-spacing: 2px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .music-btn:hover {
-      background: linear-gradient(135deg, #A0522D, #C8864E);
-      transform: scale(1.05);
-    }
-
-    .music-btn.playing {
-      animation: pulse 1.5s ease-in-out infinite;
-      border-color: #FFD700;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
-      50%       { box-shadow: 0 4px 40px rgba(255,215,0,0.8); }
-    }
-
-    /* Quote Flashcards */
-    .quote-section {
-      padding: 60px 30px 80px;
-      text-align: center;
-    }
-
-    .quote-section h2 {
-      color: #FFF5E4;
+    .player-label {
+      font-family: 'Sacramento', cursive;
       font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-      margin-bottom: 40px;
+      color: var(--pink-main);
     }
 
-    .quote-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 28px;
-    }
-
-    .qcard {
-      width: 200px;
-      height: 200px;
-      perspective: 1000px;
-      cursor: pointer;
+    .play-btn {
       position: relative;
-    }
-
-    .qcard-window {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #c0392b, #e74c3c, #ff6b6b);
-      border: 3px solid #FFD700;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--pink-light);
+      background: white;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px;
-      z-index: 0;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+      font-size: 28px;
+      color: var(--pink-hot);
+      transition: all 0.4s;
+      box-shadow: 0 6px 30px var(--shadow-pink);
     }
 
-    .qcard-window p {
-      color: #fff;
-      font-size: 12px;
-      line-height: 1.6;
-      font-style: italic;
-      text-align: center;
-      font-family: sans-serif;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    .play-btn:hover {
+      transform: scale(1.12);
+      border-color: var(--pink-hot);
+      box-shadow: 0 8px 40px rgba(236, 64, 122, 0.3);
     }
 
-    .qcard-flap {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      transform-origin: top center;
-      transform-style: preserve-3d;
-      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1;
+    .play-btn.playing {
+      border-color: var(--pink-hot);
+      background: linear-gradient(135deg, var(--pink-soft), white);
+      animation: playGlow 2s ease-in-out infinite;
     }
 
-    .qcard.open .qcard-flap {
-      transform: rotateX(-150deg);
-    }
-
-    .qcard-flap-front {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #8B5E3C, #5C3317);
-      border: 3px solid #C8864E;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      backface-visibility: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    .qcard-flap-front .card-cookie { font-size: 44px; }
-    .qcard-flap-front .card-num {
-      color: #FFD700;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 0 0 8px rgba(255,215,0,0.6);
-    }
-
-    .qcard-flap-front::after {
+    .play-btn.playing::after {
       content: '';
       position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 4px;
-      background: rgba(200,134,78,0.7);
-      border-radius: 2px;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid var(--pink-main);
+      animation: playRipple 2s ease-out infinite;
     }
 
-    .qcard-hint {
-      position: absolute;
-      bottom: -24px;
-      left: 0; right: 0;
-      text-align: center;
-      color: rgba(255,240,210,0.6);
-      font-size: 10px;
-      letter-spacing: 1px;
+    @keyframes playGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(236, 64, 122, 0.2); }
+      50%      { box-shadow: 0 0 50px rgba(236, 64, 122, 0.4); }
+    }
+
+    @keyframes playRipple {
+      0%   { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    .player-song-name {
+      font-size: 13px;
+      color: var(--text-light);
       font-style: italic;
-      pointer-events: none;
+      letter-spacing: 2px;
     }
 
-    /* Videos Section */
-    .videos-section {
-      padding: 60px 30px 40px;
-      text-align: center;
+    /* ═══════ LETTER CARDS — PERFECT GRID ═══════ */
+    .letters-section {
+      padding: 100px 30px;
     }
 
-    .videos-section h2 {
-      color: #FFF5E4;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .letter-card {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .letter-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .letter-card:hover .letter-inner {
+      transform: rotateY(8deg) scale(1.02);
+    }
+
+    .letter-card.flipped .letter-inner {
+      transform: rotateY(180deg) !important;
+    }
+
+    .letter-front, .letter-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .letter-front {
+      background: linear-gradient(150deg, white 0%, var(--pink-soft) 100%);
+      border: 2px solid rgba(240, 98, 146, 0.15);
+      box-shadow: 0 6px 30px var(--shadow-pink), 0 2px 8px var(--shadow-soft);
+      gap: 12px;
+    }
+
+    .letter-front .envelope-icon {
+      font-size: 44px;
+      filter: drop-shadow(0 4px 8px rgba(236, 64, 122, 0.2));
+      transition: transform 0.3s;
+    }
+
+    .letter-card:hover .envelope-icon {
+      transform: scale(1.15) rotate(-5deg);
+      animation: wiggle 0.5s ease-in-out;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: scale(1.15) rotate(-5deg); }
+      25%      { transform: scale(1.15) rotate(5deg); }
+      50%      { transform: scale(1.15) rotate(-3deg); }
+      75%      { transform: scale(1.15) rotate(3deg); }
+    }
+
+    .letter-front .card-label {
+      font-size: 11px;
       text-transform: uppercase;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-      margin-bottom: 40px;
+      letter-spacing: 3px;
+      color: var(--pink-main);
+      font-weight: 700;
+    }
+
+    .letter-front .card-deco {
+      font-size: 10px;
+      color: var(--pink-light);
+      letter-spacing: 6px;
+    }
+
+    .letter-back {
+      background: linear-gradient(150deg, var(--blush) 0%, white 50%, var(--lavender) 100%);
+      border: 2px solid rgba(240, 98, 146, 0.25);
+      box-shadow: 0 8px 36px var(--shadow-pink);
+      transform: rotateY(180deg);
+    }
+
+    .letter-back p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-dark);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .letter-back .back-deco {
+      position: absolute;
+      bottom: 14px;
+      font-size: 10px;
+      color: var(--pink-light);
+      letter-spacing: 4px;
+    }
+
+    /* ═══════ VIDEOS ═══════ */
+    .videos-section {
+      padding: 100px 30px;
     }
 
     .video-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .video-slot {
-      width: 300px;
-      height: 200px;
-      border-radius: 14px;
-      border: 3px solid #C8864E;
+    .video-card {
+      border-radius: 24px;
       overflow: hidden;
-      background: #3B1A08;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      color: #C8864E;
-      font-style: italic;
-      font-size: 14px;
+      border: 3px solid white;
+      background: white;
+      box-shadow: 0 8px 30px var(--shadow-pink), 0 2px 8px var(--shadow-soft);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .video-slot video {
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 16px 50px rgba(236, 64, 122, 0.2);
+      border-color: var(--pink-light);
+    }
+
+    .video-card video {
       width: 100%;
-      height: 100%;
+      height: 230px;
       object-fit: cover;
       display: block;
     }
 
-    .video-slot .placeholder-icon { font-size: 40px; }
-
-    /* Our Songs Section */
-    .our-songs-section {
-      padding: 40px 30px 80px;
-      text-align: center;
+    /* ═══════ OUR SONGS ═══════ */
+    .songs-section {
+      padding: 100px 30px 120px;
     }
 
-    .our-songs-section h2 {
-      color: #FFF5E4;
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-      margin-bottom: 40px;
-    }
-
-    .songs-grid {
+    .songs-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 30px;
     }
 
-    .song-btn {
-      background: linear-gradient(135deg, #5C3317, #8B5E3C);
-      color: #FFF5E4;
-      border: 2px solid #C8864E;
-      border-radius: 50px;
-      padding: 12px 24px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      font-family: sans-serif;
-      letter-spacing: 1px;
+    .song-pill {
       display: flex;
       align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+      gap: 12px;
+      padding: 14px 28px;
+      border-radius: 60px;
+      border: 2px solid rgba(240, 98, 146, 0.15);
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 3px 16px var(--shadow-pink);
     }
 
-    .song-btn:hover {
-      background: linear-gradient(135deg, #A0522D, #C8864E);
-      transform: scale(1.04);
-      border-color: #FFD700;
+    .song-pill:hover {
+      border-color: var(--pink-main);
+      background: var(--pink-soft);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(236, 64, 122, 0.2);
     }
 
-    .song-btn.active {
-      border-color: #FFD700;
-      background: linear-gradient(135deg, #A0522D, #C8864E);
-      animation: pulse 1.5s ease-in-out infinite;
+    .song-pill.active {
+      border-color: var(--pink-hot);
+      background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+      box-shadow: 0 6px 30px rgba(236, 64, 122, 0.25);
     }
 
-    .song-btn .s-icon { font-size: 18px; }
+    .song-pill .pill-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-main), var(--lavender-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      color: white;
+      box-shadow: 0 3px 10px rgba(236, 64, 122, 0.3);
+    }
 
-    .now-playing {
-      color: #FFD700;
-      font-size: 13px;
+    .song-pill.active .pill-icon {
+      background: linear-gradient(135deg, var(--pink-hot), var(--pink-deep));
+      animation: discSpin 2s linear infinite;
+    }
+
+    @keyframes discSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .now-playing-bar {
+      text-align: center;
+      min-height: 30px;
+      font-size: 14px;
+      color: var(--pink-hot);
       font-style: italic;
-      margin-top: 20px;
-      min-height: 20px;
       letter-spacing: 1px;
-      text-shadow: 0 0 8px rgba(255,215,0,0.6);
+      margin-top: 24px;
+      font-weight: 600;
     }
 
-    /* hidden yt frames */
+    /* ═══════ COUNTDOWN / FUN FACTS TICKER ═══════ */
+    .fun-ticker {
+      padding: 30px;
+      text-align: center;
+    }
+
+    .ticker-card {
+      display: inline-block;
+      background: white;
+      padding: 20px 40px;
+      border-radius: 60px;
+      border: 2px solid var(--glass-border);
+      box-shadow: 0 4px 20px var(--shadow-pink);
+      font-size: 15px;
+      color: var(--text-mid);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .ticker-card span {
+      color: var(--pink-hot);
+      font-weight: 700;
+    }
+
+    /* ═══════ FOOTER ═══════ */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 50px 30px;
+      background: linear-gradient(180deg, transparent, rgba(252, 228, 236, 0.4));
+    }
+
+    .footer-hearts { font-size: 24px; margin-bottom: 12px; letter-spacing: 8px; }
+
+    .footer-text {
+      font-family: 'Sacramento', cursive;
+      font-size: 26px;
+      color: var(--pink-main);
+    }
+
+    .footer-sub {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ═══════ HIDDEN ═══════ */
     .yt-hidden {
       position: fixed;
       bottom: 0; right: 0;
@@ -426,30 +696,93 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 1024px) {
+      .letters-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { gap: 14px; padding: 12px 16px; flex-wrap: wrap; }
+      nav a { font-size: 10px; letter-spacing: 1px; }
+      .hero-message-card { padding: 24px; }
+      .hero-message-card p { font-size: 14px; }
+      .photo-track img { height: 130px; width: 150px; }
+      .letters-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .video-grid { grid-template-columns: 1fr; max-width: 500px; }
+      .song-pill { padding: 12px 20px; font-size: 13px; }
+    }
+
+    @media (max-width: 480px) {
+      .letters-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .letter-back p { font-size: 11px; }
+    }
+
+    /* ═══════ SCROLL REVEAL ═══════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════ CONFETTI BURST ═══════ */
+    .confetti {
+      position: fixed;
+      z-index: 10000;
+      pointer-events: none;
+      font-size: 20px;
+      animation: confettiFall var(--cdur) ease-out forwards;
+    }
+
+    @keyframes confettiFall {
+      0%   { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+      100% { opacity: 0; transform: translateY(100vh) rotate(var(--crot)) scale(0.3); }
+    }
   </style>
 </head>
 <body>
 
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
-  <div class="cookie">🍪</div>
+  <!-- ═══════ FLOATING BACKGROUND ELEMENTS ═══════ -->
+  <div class="floating-things" id="floating-things"></div>
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+  <div class="bg-blob blob-4"></div>
 
-  <header>✨ to the girl who stood when others left ✨</header>
+  <!-- ═══════ NAVIGATION ═══════ -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#photos">Photos</a>
+    <a href="#letters">Letters</a>
+    <a href="#videos">Videos</a>
+    <a href="#songs">Songs</a>
+  </nav>
 
-  <div class="banner">
-    <div class="track">
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero" id="home">
+    <div class="hero-hearts">&#x1F338; &#x1F49D; &#x1F338;</div>
+    <div class="hero-tagline">to the girl who stood when others left</div>
+    <div class="hero-title">Happy Birthday<br>Maanu!</div>
+    <div class="hero-age">turning 21 &#x2728;</div>
+    <div class="hero-message-card">
+      <p>
+        thankyou for always being there for me &#x2014; you were the only one who stayed. even if i sometimes act too much out of line, you always stay. i love you to the galaxy and back. this day is for you. from your philosophies to your anime obsession, to me collecting all the books you ordered &#x2014; i love you, and i am always going to be there no matter what. &#x1F319;&#x2728;
+      </p>
+    </div>
+    <div class="hero-scroll">
+      <span>scroll down</span>
+      <div class="scroll-hearts">&#x1F49E;</div>
+    </div>
+  </section>
+
+  <!-- ═══════ PHOTO STRIP ═══════ -->
+  <section class="photo-strip" id="photos">
+    <div class="photo-track">
       <img src="img m.2.jpeg" alt="">
       <img src="WhatsApp Image 2026-02-23 at 17.43.43.jpeg" alt="">
       <img src="img m.2.jpeg" alt="">
@@ -462,6 +795,7 @@
       <img src="imgm.10.jpeg" alt="">
       <img src="imgm.11.jpeg" alt="">
       <img src="imgm.12.jpeg" alt="">
+      <!-- duplicate for seamless scroll -->
       <img src="img m.2.jpeg" alt="">
       <img src="WhatsApp Image 2026-02-23 at 17.43.43.jpeg" alt="">
       <img src="img m.2.jpeg" alt="">
@@ -475,121 +809,280 @@
       <img src="imgm.11.jpeg" alt="">
       <img src="imgm.12.jpeg" alt="">
     </div>
-  </div>
+  </section>
 
-  <div class="message-section">
-    <div class="bday-title">HAPPIEST 21 BDAY MAANU 🍪</div>
-    <div class="bday-message">
-      thankyou for always being there for me — you were the only one who stayed. even if i sometimes act too much out of line, you always stay. i love you to the galaxy and back. this day is for you. from your philosophies to your anime obsession, to me collecting all the books you ordered — i love you, and i am always going to be there no matter what. 🌙✨
-    </div>
-  </div>
-
-  <!-- Maanu's fav song -->
-  <div class="music-section">
-    <div class="song-info">🎵 we fell in love in october — girl in red 🎵</div>
-    <button class="music-btn" id="music-btn" onclick="toggleMainSong()">
-      <span id="music-icon">▶️</span>
-      <span id="music-label">PLAY HER SONG</span>
+  <!-- ═══════ MUSIC PLAYER ═══════ -->
+  <section class="music-player">
+    <div class="player-label">her favourite song</div>
+    <button class="play-btn" id="play-btn" onclick="toggleMainSong()">
+      <span id="play-icon">&#9654;</span>
     </button>
-  </div>
+    <div class="player-song-name">we fell in love in october &#x2014; girl in red</div>
+  </section>
 
   <iframe id="main-yt" class="yt-hidden" allow="autoplay" frameborder="0"></iframe>
 
-  <!-- Quote Flashcards -->
-  <div class="quote-section">
-    <h2>💌 letters for you 💌</h2>
-    <div class="quote-grid" id="quote-grid"></div>
+  <!-- ═══════ FUN TICKER ═══════ -->
+  <div class="fun-ticker reveal">
+    <div class="ticker-card" id="ticker-card">
+      &#x1F382; She has been blessing this world for <span id="age-seconds">0</span> seconds!
+    </div>
   </div>
 
-  <!-- Us Being Us Videos -->
-  <div class="videos-section">
-    <h2>🎥 us being us 🎥</h2>
+  <!-- ═══════ LETTERS ═══════ -->
+  <section class="letters-section reveal" id="letters">
+    <h2 class="section-title">Letters For You &#x1F48C;</h2>
+    <div class="section-divider"></div>
+    <div class="section-subtitle">tap a card to read</div>
+    <div class="letters-grid" id="letters-grid"></div>
+  </section>
+
+  <!-- ═══════ VIDEOS ═══════ -->
+  <section class="videos-section reveal" id="videos">
+    <h2 class="section-title">Us Being Us &#x1F3AC;</h2>
+    <div class="section-divider"></div>
+    <div class="section-subtitle">our chaotic memories</div>
     <div class="video-grid">
-      <!-- Add your video files as src below -->
-      <div class="video-slot">
-        <video controls>
-          <source src="v1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-slot">
-        <video controls>
-          <source src="v2.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-slot">
-        <video controls>
-          <source src="v3.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-slot">
-        <video controls>
-          <source src="v5.mp4" type="video/mp4">
-        </video>
-      </div>
+      <div class="video-card"><video controls><source src="v1.mp4" type="video/mp4"></video></div>
+      <div class="video-card"><video controls><source src="v2.mp4" type="video/mp4"></video></div>
+      <div class="video-card"><video controls><source src="v3.mp4" type="video/mp4"></video></div>
+      <div class="video-card"><video controls><source src="v5.mp4" type="video/mp4"></video></div>
     </div>
-  </div>
+  </section>
 
-  <!-- Our Songs -->
-  <div class="our-songs-section">
-    <h2>🎶 our songs 🎶</h2>
-    <div class="songs-grid">
-      <button class="song-btn" onclick="playSong(this, 'irresponsible', 'Irresponsible — emei')">
-        <span class="s-icon">🎵</span> Irresponsible — emei
+  <!-- ══════════════════════════════════════════════════════════════════
+       ═══════  OUR SONGS SECTION  ═══════
+       
+       HOW TO ADD YOUR OWN AUDIO FILES:
+       ─────────────────────────────────
+       1. Place your audio files (mp3, wav, ogg, etc.) in the same folder 
+          as this HTML file, e.g.:
+            - irresponsible.mp3
+            - babaji_ki_booti.mp3
+            - pungi.mp3
+            - you_and_me.mp3
+            - sacchi_mucchi.mp3
+            - her.mp3
+
+       2. In the <script> section below, find the "songFiles" object and 
+          update each entry with the path to your audio file:
+
+            const songFiles = {
+              irresponsible: 'irresponsible.mp3',
+              babaji:        'babaji_ki_booti.mp3',
+              pungi:         'pungi.mp3',
+              youandme:      'you_and_me.mp3',
+              sacchi:        'sacchi_mucchi.mp3',
+              her:           'her.mp3'
+            };
+
+       3. The buttons below will automatically play/pause your local 
+          audio files instead of using YouTube embeds.
+
+       4. Supported formats: .mp3, .wav, .ogg, .m4a, .aac
+       
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="songs-section reveal" id="songs">
+    <h2 class="section-title">Our Songs &#x1F3B6;</h2>
+    <div class="section-divider"></div>
+    <div class="section-subtitle">the playlist of us</div>
+    <div class="songs-list">
+
+      <!-- 
+        ╔══════════════════════════════════════════════════════════╗
+        ║  AUDIO FILE NOTE:                                       ║
+        ║  To use local audio instead of YouTube, add an <audio>  ║
+        ║  tag for each song and update the songFiles object in   ║
+        ║  the script below. See instructions above this section. ║
+        ╚══════════════════════════════════════════════════════════╝
+      -->
+
+      <button class="song-pill" onclick="playSong(this, 'irresponsible', 'Irresponsible &#x2014; emei')">
+        <span class="pill-icon">&#9835;</span> Irresponsible &#x2014; emei
       </button>
-      <button class="song-btn" onclick="playSong(this, 'babaji', 'Babaji Ki Booti — Go Goa Gone')">
-        <span class="s-icon">🎵</span> Babaji Ki Booti — Go Goa Gone
+      <button class="song-pill" onclick="playSong(this, 'babaji', 'Babaji Ki Booti &#x2014; Go Goa Gone')">
+        <span class="pill-icon">&#9835;</span> Babaji Ki Booti
       </button>
-      <button class="song-btn" onclick="playSong(this, 'pungi', 'Pungi — Agent Vinod')">
-        <span class="s-icon">🎵</span> Pungi — Agent Vinod
+      <button class="song-pill" onclick="playSong(this, 'pungi', 'Pungi &#x2014; Agent Vinod')">
+        <span class="pill-icon">&#9835;</span> Pungi &#x2014; Agent Vinod
       </button>
-      <button class="song-btn" onclick="playSong(this, 'youandme', 'You & Me Belong Together — Mark Turns')">
-        <span class="s-icon">🎵</span> You & Me Belong Together — Mark Turns
+      <button class="song-pill" onclick="playSong(this, 'youandme', 'You &amp; Me Belong Together')">
+        <span class="pill-icon">&#9835;</span> You &amp; Me Belong Together
       </button>
-      <button class="song-btn" onclick="playSong(this, 'sacchi', 'Sacchi Mucchi — Harshdeep Kaur')">
-        <span class="s-icon">🎵</span> Sacchi Mucchi — Harshdeep Kaur
+      <button class="song-pill" onclick="playSong(this, 'sacchi', 'Sacchi Mucchi &#x2014; Harshdeep Kaur')">
+        <span class="pill-icon">&#9835;</span> Sacchi Mucchi
       </button>
-      <button class="song-btn" onclick="playSong(this, 'her', 'Her — JVKE')">
-        <span class="s-icon">🎵</span> Her — JVKE
+      <button class="song-pill" onclick="playSong(this, 'her', 'Her &#x2014; JVKE')">
+        <span class="pill-icon">&#9835;</span> Her &#x2014; JVKE
       </button>
     </div>
-    <div class="now-playing" id="now-playing"></div>
-  </div>
+    <div class="now-playing-bar" id="now-playing"></div>
+  </section>
+
+  <!--
+    ═══════════════════════════════════════════════════════════
+    AUDIO ELEMENTS FOR "OUR SONGS"
+    ───────────────────────────────────────────────────────────
+    Uncomment and update the src paths below once you have 
+    your audio files ready. Each id must match the keys used 
+    in the songFiles object in the script.
+
+    <audio id="audio-irresponsible" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-babaji" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-pungi" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-youandme" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-sacchi" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-her" preload="none">
+      <source src="YOUR_AUDIO_FILE_HERE.mp3" type="audio/mpeg">
+    </audio>
+    ═══════════════════════════════════════════════════════════
+  -->
 
   <iframe id="songs-yt" class="yt-hidden" allow="autoplay" frameborder="0"></iframe>
 
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <div class="footer-hearts">&#x1F338; &#x1F49D; &#x1F338; &#x1F49D; &#x1F338;</div>
+    <div class="footer-text">made with love, for Maanu</div>
+    <div class="footer-sub">always &amp; forever &#x2764;&#xFE0F;</div>
+  </footer>
+
+  <!-- ═══════ SCRIPTS ═══════ -->
   <script>
-    /* ── Main song toggle ── */
+    /* ── Floating Hearts, Petals, Sparkles ── */
+    (function() {
+      const container = document.getElementById('floating-things');
+      const items = ['\u2764\uFE0F', '\uD83C\uDF38', '\u2728', '\uD83E\uDDE1', '\uD83C\uDF3A', '\u1F49E', '\uD83C\uDF3C', '\u2B50', '\uD83E\uDD8B', '\uD83C\uDF39'];
+      for (let i = 0; i < 30; i++) {
+        const el = document.createElement('div');
+        el.className = 'float-item';
+        el.textContent = items[Math.floor(Math.random() * items.length)];
+        el.style.left = Math.random() * 100 + '%';
+        el.style.setProperty('--dur', (8 + Math.random() * 14) + 's');
+        el.style.setProperty('--delay', (Math.random() * 15) + 's');
+        el.style.setProperty('--size', (14 + Math.random() * 18) + 'px');
+        el.style.setProperty('--rot', (180 + Math.random() * 360) + 'deg');
+        el.style.setProperty('--drift', (-30 + Math.random() * 60) + 'px');
+        container.appendChild(el);
+      }
+    })();
+
+    /* ── Sparkle Cursor Trail ── */
+    let sparkleThrottle = 0;
+    document.addEventListener('mousemove', (e) => {
+      if (Date.now() - sparkleThrottle < 80) return;
+      sparkleThrottle = Date.now();
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.textContent = ['\u2728', '\u1F49B', '\u2B50', '\uD83C\uDF38'][Math.floor(Math.random() * 4)];
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 800);
+    });
+
+    /* ── Confetti Burst on Page Load ── */
+    setTimeout(() => {
+      const confettiItems = ['\uD83C\uDF89', '\uD83C\uDF8A', '\u2728', '\uD83C\uDF38', '\u2764\uFE0F', '\uD83E\uDD8B', '\uD83C\uDF80', '\u1F49D', '\uD83C\uDF3A'];
+      for (let i = 0; i < 40; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.textContent = confettiItems[Math.floor(Math.random() * confettiItems.length)];
+        c.style.left = (10 + Math.random() * 80) + 'vw';
+        c.style.top = '-20px';
+        c.style.setProperty('--cdur', (2 + Math.random() * 3) + 's');
+        c.style.setProperty('--crot', (200 + Math.random() * 500) + 'deg');
+        c.style.fontSize = (16 + Math.random() * 20) + 'px';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }
+    }, 800);
+
+    /* ── Scroll Reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    /* ── Age Counter (seconds alive) ── */
+    (function() {
+      // Approximate birthday: Feb 23, 2005
+      const bday = new Date(2005, 1, 23);
+      const el = document.getElementById('age-seconds');
+      function update() {
+        const diff = Math.floor((Date.now() - bday.getTime()) / 1000);
+        el.textContent = diff.toLocaleString();
+      }
+      update();
+      setInterval(update, 1000);
+    })();
+
+    /* ── Main Song Toggle ── */
     let mainPlaying = false;
     const mainFrame = document.getElementById('main-yt');
-    const mainBtn   = document.getElementById('music-btn');
-    const mainIcon  = document.getElementById('music-icon');
-    const mainLbl   = document.getElementById('music-label');
+    const playBtn   = document.getElementById('play-btn');
+    const playIcon  = document.getElementById('play-icon');
 
     function toggleMainSong() {
       if (!mainPlaying) {
         mainFrame.src = "https://www.youtube.com/embed/HxlHO8EBiqs?autoplay=1&mute=0&loop=1&playlist=HxlHO8EBiqs";
-        mainIcon.textContent = '⏸️';
-        mainLbl.textContent  = 'PAUSE';
-        mainBtn.classList.add('playing');
+        playIcon.innerHTML = '\u23F8';
+        playBtn.classList.add('playing');
         mainPlaying = true;
       } else {
         mainFrame.src = '';
-        mainIcon.textContent = '▶️';
-        mainLbl.textContent  = 'PLAY HER SONG';
-        mainBtn.classList.remove('playing');
+        playIcon.innerHTML = '\u25B6';
+        playBtn.classList.remove('playing');
         mainPlaying = false;
       }
     }
 
-    /* ── Our Songs ── */
-    // YouTube video IDs for each song — searched and matched as best as possible
+    /* ═══════════════════════════════════════════════════════════════
+       OUR SONGS — PLAYBACK LOGIC
+       ─────────────────────────────────────────────────────────────
+       Currently uses YouTube embeds. To switch to local audio files:
+       
+       1. Uncomment the <audio> elements above
+       2. Set their src to your .mp3 files
+       3. Replace the playSong() function body with:
+       
+          function playSong(btn, key, label) {
+            document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+            if (currentSongKey === key) {
+              btn.classList.remove('active');
+              nowPlaying.textContent = '';
+              currentSongKey = null;
+              currentSongBtn = null;
+              return;
+            }
+            if (currentSongBtn) currentSongBtn.classList.remove('active');
+            const audio = document.getElementById('audio-' + key);
+            audio.play();
+            btn.classList.add('active');
+            nowPlaying.textContent = '\u25B6 Now Playing: ' + label;
+            currentSongKey = key;
+            currentSongBtn = btn;
+          }
+       ═══════════════════════════════════════════════════════════════ */
+
     const songIds = {
-      irresponsible: 'Iy4J3OiDSnE',   // emei - irresponsible
-      babaji:        'RMvKMnvpHcQ',   // babaji ki booti go goa gone
-      pungi:         'z2nFMbLkdY8',   // pungi agent vinod
-      youandme:      'pZ_n0VcWLCk',   // you and me belong together mark turns
-      sacchi:        'Ts4J0FQTLHQ',   // sacchi mucchi harshdeep kaur
-      her:           'KeSXoEoQ5AA'    // her jvke
+      irresponsible: 'Iy4J3OiDSnE',
+      babaji:        'RMvKMnvpHcQ',
+      pungi:         'z2nFMbLkdY8',
+      youandme:      'pZ_n0VcWLCk',
+      sacchi:        'Ts4J0FQTLHQ',
+      her:           'KeSXoEoQ5AA'
     };
 
     let currentSongKey = null;
@@ -598,33 +1091,23 @@
     const nowPlaying   = document.getElementById('now-playing');
 
     function playSong(btn, key, label) {
-      // If same song clicked again — stop it
       if (currentSongKey === key) {
         songsFrame.src = '';
         btn.classList.remove('active');
         nowPlaying.textContent = '';
         currentSongKey = null;
         currentSongBtn = null;
-        btn.querySelector('.s-icon').textContent = '🎵';
         return;
       }
-
-      // Stop previous
-      if (currentSongBtn) {
-        currentSongBtn.classList.remove('active');
-        currentSongBtn.querySelector('.s-icon').textContent = '🎵';
-      }
-
-      // Play new
+      if (currentSongBtn) currentSongBtn.classList.remove('active');
       songsFrame.src = `https://www.youtube.com/embed/${songIds[key]}?autoplay=1&mute=0`;
       btn.classList.add('active');
-      btn.querySelector('.s-icon').textContent = '▶️';
-      nowPlaying.textContent = '▶ Now Playing: ' + label;
+      nowPlaying.textContent = '\u25B6 Now Playing: ' + label;
       currentSongKey = key;
       currentSongBtn = btn;
     }
 
-    /* ── Quote Flashcards ── */
+    /* ── Letter Cards ── */
     const quotes = [
       "Thankyou for listening to me endlessly",
       "You are the one who makes college life bearable",
@@ -633,40 +1116,70 @@
       "To all the times you have been my anchor",
       "This is to the one person who sees me going out of direction and brings me back",
       "Thankyou for coping and listening to my obsessions",
-      "I don't know what the future holds but one thing is for sure — we are always gonna be together",
+      "I don\u2019t know what the future holds but one thing is for sure \u2014 we are always gonna be together",
       "We may not be sisters by blood but we are sisters by heart",
       "This year lets make the people jealous of our bond even more jealous",
-      "I thought I wouldn't be able to find friends but then came you and it was my best decision to keep you",
-      "We started as strangers, turned into best friends, and somehow became each other's safe place.",
-      "Thankyou for being a therapist, bodyguard, personal comedian, and partner in crime — that too all unpaid.",
-      "Some friendships don't need daily conversations — just one 'I need you' and they appear.",
-      "You know it's real when silence between you feels as comfortable as laughter.",
-      "We don't have it all together, but together we have it all.",
-      "Behind every strong girl is another girl hyping her up and fixing her crown — that's you for me.",
-      "We've seen each other at our worst, laughed through our mess, and stayed anyway — that's real friendship.",
+      "I thought I wouldn\u2019t be able to find friends but then came you and it was my best decision to keep you",
+      "We started as strangers, turned into best friends, and somehow became each other\u2019s safe place.",
+      "Thankyou for being a therapist, bodyguard, personal comedian, and partner in crime \u2014 that too all unpaid.",
+      "Some friendships don\u2019t need daily conversations \u2014 just one \u2018I need you\u2019 and they appear.",
+      "You know it\u2019s real when silence between you feels as comfortable as laughter.",
+      "We don\u2019t have it all together, but together we have it all.",
+      "Behind every strong girl is another girl hyping her up and fixing her crown \u2014 that\u2019s you for me.",
+      "We\u2019ve seen each other at our worst, laughed through our mess, and stayed anyway \u2014 that\u2019s real friendship.",
       "Life gave me many people, but you are the one who feels like home.",
       "If friendship had a definition, it would look like late-night talks, inside jokes, and you.",
-      "Happy 21st Maanu — here's to forever. 🍪🌙"
+      "Happy 21st Maanu \u2014 here\u2019s to forever. \uD83C\uDF6A\uD83C\uDF19"
     ];
 
-    const grid = document.getElementById('quote-grid');
-    quotes.forEach((q) => {
+    const lettersGrid = document.getElementById('letters-grid');
+    const cardEmojis = ['\uD83D\uDC8C', '\uD83C\uDF38', '\uD83E\uDD8B', '\uD83C\uDF3A', '\uD83C\uDF39', '\uD83C\uDF3C', '\uD83E\uDDE1', '\uD83D\uDC9D'];
+
+    quotes.forEach((q, i) => {
       const card = document.createElement('div');
-      card.className = 'qcard';
+      card.className = 'letter-card';
+      const emoji = cardEmojis[i % cardEmojis.length];
       card.innerHTML = `
-        <div class="qcard-window"><p>${q}</p></div>
-        <div class="qcard-flap">
-          <div class="qcard-flap-front">
-            <span class="card-cookie">🍪</span>
-            <span class="card-num">OPEN ME</span>
+        <div class="letter-inner">
+          <div class="letter-front">
+            <span class="card-deco">\u2022 \u2022 \u2022</span>
+            <span class="envelope-icon">${emoji}</span>
+            <span class="card-label">tap to read</span>
+            <span class="card-deco">\u2022 \u2022 \u2022</span>
+          </div>
+          <div class="letter-back">
+            <p>${q}</p>
+            <span class="back-deco">\u2764\uFE0F</span>
           </div>
         </div>
-        <div class="qcard-hint">tap to open</div>
       `;
-      card.addEventListener('click', () => card.classList.toggle('open'));
-      grid.appendChild(card);
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+      lettersGrid.appendChild(card);
+    });
+
+    /* ── Nav active highlight ── */
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + 100;
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const h = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (link) {
+          if (scrollY >= top && scrollY < top + h) {
+            link.style.color = '#ec407a';
+          } else {
+            link.style.color = '';
+          }
+        }
+      });
     });
   </script>
 
 </body>
 </html>
+
+   
+
+  

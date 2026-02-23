@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 21st Maanu 🍪</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(160deg, #6B3F1F, #A0522D, #C8864E, #8B5E3C, #5C3317);
+      background-size: 400% 400%;
+      animation: bgShift 12s ease infinite;
+      min-height: 100vh;
+      font-family: sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes bgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .cookie {
+      position: fixed;
+      top: -80px;
+      font-size: 28px;
+      animation: fall linear infinite;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+    }
+
+    .cookie:nth-child(1)  { left: 5%;   animation-duration: 6s;   animation-delay: 0s;    font-size: 24px; }
+    .cookie:nth-child(2)  { left: 12%;  animation-duration: 8s;   animation-delay: 1s;    font-size: 32px; }
+    .cookie:nth-child(3)  { left: 20%;  animation-duration: 5s;   animation-delay: 2s;    font-size: 20px; }
+    .cookie:nth-child(4)  { left: 30%;  animation-duration: 9s;   animation-delay: 0.5s;  font-size: 28px; }
+    .cookie:nth-child(5)  { left: 40%;  animation-duration: 7s;   animation-delay: 3s;    font-size: 22px; }
+    .cookie:nth-child(6)  { left: 50%;  animation-duration: 6.5s; animation-delay: 1.5s;  font-size: 30px; }
+    .cookie:nth-child(7)  { left: 58%;  animation-duration: 8.5s; animation-delay: 0.2s;  font-size: 26px; }
+    .cookie:nth-child(8)  { left: 67%;  animation-duration: 5.5s; animation-delay: 2.5s;  font-size: 34px; }
+    .cookie:nth-child(9)  { left: 75%;  animation-duration: 7.5s; animation-delay: 1s;    font-size: 22px; }
+    .cookie:nth-child(10) { left: 83%;  animation-duration: 9s;   animation-delay: 3.5s;  font-size: 28px; }
+    .cookie:nth-child(11) { left: 90%;  animation-duration: 6s;   animation-delay: 0.8s;  font-size: 24px; }
+    .cookie:nth-child(12) { left: 96%;  animation-duration: 8s;   animation-delay: 2s;    font-size: 30px; }
+    .cookie:nth-child(13) { left: 25%;  animation-duration: 7s;   animation-delay: 4s;    font-size: 20px; }
+    .cookie:nth-child(14) { left: 45%;  animation-duration: 5s;   animation-delay: 1.2s;  font-size: 26px; }
+    .cookie:nth-child(15) { left: 70%;  animation-duration: 9.5s; animation-delay: 0.4s;  font-size: 32px; }
+
+    header, .banner, .message-section, .music-section, .quote-section, .videos-section, .our-songs-section {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      width: 100%;
+      padding: 28px 40px;
+      color: #FFF5E4;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      font-style: italic;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+      letter-spacing: 1px;
+    }
+
+    .banner {
+      width: 100%;
+      height: 130px;
+      background: linear-gradient(90deg, #3B1A08, #6B3A1F, #3B1A08);
+      margin-top: 50px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border-top: 4px dashed #C8864E;
+      border-bottom: 4px dashed #C8864E;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .track {
+      display: flex;
+      gap: 8px;
+      animation: scroll 18s linear infinite;
+      width: max-content;
+    }
+
+    .track img {
+      height: 100px;
+      width: 115px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 3px solid #C8864E;
+      flex-shrink: 0;
+    }
+
+    @keyframes scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .banner:hover .track { animation-play-state: paused; }
+
+    .message-section {
+      text-align: center;
+      padding: 50px 30px 10px;
+    }
+
+    .bday-title {
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      color: #FFF5E4;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      text-shadow: 3px 3px 0px #3B1A08, 6px 6px 15px rgba(0,0,0,0.5);
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+
+    .bday-message {
+      max-width: 750px;
+      margin: 0 auto 40px;
+      font-size: 17px;
+      color: #FFF0DC;
+      line-height: 1.9;
+      font-style: italic;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+      background: rgba(59, 26, 8, 0.4);
+      padding: 25px 35px;
+      border-radius: 16px;
+      border: 2px solid rgba(200, 134, 78, 0.4);
+    }
+
+    /* Music */
+    .music-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 20px 40px;
+    }
+
+    .song-info {
+      color: #FFF0DC;
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: 1px;
+      opacity: 0.85;
+    }
+
+    .music-btn {
+      background: linear-gradient(135deg, #6B3A1F, #A0522D);
+      color: #FFF5E4;
+      border: 3px solid #C8864E;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: sans-serif;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .music-btn:hover {
+      background: linear-gradient(135deg, #A0522D, #C8864E);
+      transform: scale(1.05);
+    }
+
+    .music-btn.playing {
+      animation: pulse 1.5s ease-in-out infinite;
+      border-color: #FFD700;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(255,215,0,0.3); }
+      50%       { box-shadow: 0 4px 40px rgba(255,215,0,0.8); }
+    }
+
+    /* Quote Flashcards */
+    .quote-section {
+      padding: 60px 30px 80px;
+      text-align: center;
+    }
+
+    .quote-section h2 {
+      color: #FFF5E4;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+    }
+
+    .quote-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .qcard {
+      width: 200px;
+      height: 200px;
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .qcard-window {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #c0392b, #e74c3c, #ff6b6b);
+      border: 3px solid #FFD700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      z-index: 0;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .qcard-window p {
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.6;
+      font-style: italic;
+      text-align: center;
+      font-family: sans-serif;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .qcard-flap {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+    }
+
+    .qcard.open .qcard-flap {
+      transform: rotateX(-150deg);
+    }
+
+    .qcard-flap-front {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #8B5E3C, #5C3317);
+      border: 3px solid #C8864E;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      backface-visibility: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .qcard-flap-front .card-cookie { font-size: 44px; }
+    .qcard-flap-front .card-num {
+      color: #FFD700;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
+    }
+
+    .qcard-flap-front::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 4px;
+      background: rgba(200,134,78,0.7);
+      border-radius: 2px;
+    }
+
+    .qcard-hint {
+      position: absolute;
+      bottom: -24px;
+      left: 0; right: 0;
+      text-align: center;
+      color: rgba(255,240,210,0.6);
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    /* Videos Section */
+    .videos-section {
+      padding: 60px 30px 40px;
+      text-align: center;
+    }
+
+    .videos-section h2 {
+      color: #FFF5E4;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+    }
+
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .video-slot {
+      width: 300px;
+      height: 200px;
+      border-radius: 14px;
+      border: 3px solid #C8864E;
+      overflow: hidden;
+      background: #3B1A08;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: #C8864E;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .video-slot video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-slot .placeholder-icon { font-size: 40px; }
+
+    /* Our Songs Section */
+    .our-songs-section {
+      padding: 40px 30px 80px;
+      text-align: center;
+    }
+
+    .our-songs-section h2 {
+      color: #FFF5E4;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+    }
+
+    .songs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .song-btn {
+      background: linear-gradient(135deg, #5C3317, #8B5E3C);
+      color: #FFF5E4;
+      border: 2px solid #C8864E;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: sans-serif;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    .song-btn:hover {
+      background: linear-gradient(135deg, #A0522D, #C8864E);
+      transform: scale(1.04);
+      border-color: #FFD700;
+    }
+
+    .song-btn.active {
+      border-color: #FFD700;
+      background: linear-gradient(135deg, #A0522D, #C8864E);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .song-btn .s-icon { font-size: 18px; }
+
+    .now-playing {
+      color: #FFD700;
+      font-size: 13px;
+      font-style: italic;
+      margin-top: 20px;
+      min-height: 20px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(255,215,0,0.6);
+    }
+
+    /* hidden yt frames */
+    .yt-hidden {
+      position: fixed;
+      bottom: 0; right: 0;
+      width: 0; height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+  <div class="cookie">🍪</div>
+
+  <header>✨ to the girl who stood when others left ✨</header>
+
+  <div class="banner">
+    <div class="track">
+      <img src="img m.2.jpeg" alt="">
+      <img src="WhatsApp Image 2026-02-23 at 17.43.43.jpeg" alt="">
+      <img src="img m.2.jpeg" alt="">
+      <img src="imgm.3.jpeg" alt="">
+      <img src="imgm.4.jpeg" alt="">
+      <img src="imgm.6.jpeg" alt="">
+      <img src="imgm.7.jpeg" alt="">
+      <img src="imgm.8.jpeg" alt="">
+      <img src="imgm.9.jpeg" alt="">
+      <img src="imgm.10.jpeg" alt="">
+      <img src="imgm.11.jpeg" alt="">
+      <img src="imgm.12.jpeg" alt="">
+      <img src="img m.2.jpeg" alt="">
+      <img src="WhatsApp Image 2026-02-23 at 17.43.43.jpeg" alt="">
+      <img src="img m.2.jpeg" alt="">
+      <img src="imgm.3.jpeg" alt="">
+      <img src="imgm.4.jpeg" alt="">
+      <img src="imgm.6.jpeg" alt="">
+      <img src="imgm.7.jpeg" alt="">
+      <img src="imgm.8.jpeg" alt="">
+      <img src="imgm.9.jpeg" alt="">
+      <img src="imgm.10.jpeg" alt="">
+      <img src="imgm.11.jpeg" alt="">
+      <img src="imgm.12.jpeg" alt="">
+    </div>
+  </div>
+
+  <div class="message-section">
+    <div class="bday-title">HAPPIEST 21 BDAY MAANU 🍪</div>
+    <div class="bday-message">
+      thankyou for always being there for me — you were the only one who stayed. even if i sometimes act too much out of line, you always stay. i love you to the galaxy and back. this day is for you. from your philosophies to your anime obsession, to me collecting all the books you ordered — i love you, and i am always going to be there no matter what. 🌙✨
+    </div>
+  </div>
+
+  <!-- Maanu's fav song -->
+  <div class="music-section">
+    <div class="song-info">🎵 we fell in love in october — girl in red 🎵</div>
+    <button class="music-btn" id="music-btn" onclick="toggleMainSong()">
+      <span id="music-icon">▶️</span>
+      <span id="music-label">PLAY HER SONG</span>
+    </button>
+  </div>
+
+  <iframe id="main-yt" class="yt-hidden" allow="autoplay" frameborder="0"></iframe>
+
+  <!-- Quote Flashcards -->
+  <div class="quote-section">
+    <h2>💌 letters for you 💌</h2>
+    <div class="quote-grid" id="quote-grid"></div>
+  </div>
+
+  <!-- Us Being Us Videos -->
+  <div class="videos-section">
+    <h2>🎥 us being us 🎥</h2>
+    <div class="video-grid">
+      <!-- Add your video files as src below -->
+      <div class="video-slot">
+        <video controls>
+          <source src="v1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-slot">
+        <video controls>
+          <source src="v2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-slot">
+        <video controls>
+          <source src="v3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-slot">
+        <video controls>
+          <source src="v5.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Songs -->
+  <div class="our-songs-section">
+    <h2>🎶 our songs 🎶</h2>
+    <div class="songs-grid">
+      <button class="song-btn" onclick="playSong(this, 'irresponsible', 'Irresponsible — emei')">
+        <span class="s-icon">🎵</span> Irresponsible — emei
+      </button>
+      <button class="song-btn" onclick="playSong(this, 'babaji', 'Babaji Ki Booti — Go Goa Gone')">
+        <span class="s-icon">🎵</span> Babaji Ki Booti — Go Goa Gone
+      </button>
+      <button class="song-btn" onclick="playSong(this, 'pungi', 'Pungi — Agent Vinod')">
+        <span class="s-icon">🎵</span> Pungi — Agent Vinod
+      </button>
+      <button class="song-btn" onclick="playSong(this, 'youandme', 'You & Me Belong Together — Mark Turns')">
+        <span class="s-icon">🎵</span> You & Me Belong Together — Mark Turns
+      </button>
+      <button class="song-btn" onclick="playSong(this, 'sacchi', 'Sacchi Mucchi — Harshdeep Kaur')">
+        <span class="s-icon">🎵</span> Sacchi Mucchi — Harshdeep Kaur
+      </button>
+      <button class="song-btn" onclick="playSong(this, 'her', 'Her — JVKE')">
+        <span class="s-icon">🎵</span> Her — JVKE
+      </button>
+    </div>
+    <div class="now-playing" id="now-playing"></div>
+  </div>
+
+  <iframe id="songs-yt" class="yt-hidden" allow="autoplay" frameborder="0"></iframe>
+
+  <script>
+    /* ── Main song toggle ── */
+    let mainPlaying = false;
+    const mainFrame = document.getElementById('main-yt');
+    const mainBtn   = document.getElementById('music-btn');
+    const mainIcon  = document.getElementById('music-icon');
+    const mainLbl   = document.getElementById('music-label');
+
+    function toggleMainSong() {
+      if (!mainPlaying) {
+        mainFrame.src = "https://www.youtube.com/embed/HxlHO8EBiqs?autoplay=1&mute=0&loop=1&playlist=HxlHO8EBiqs";
+        mainIcon.textContent = '⏸️';
+        mainLbl.textContent  = 'PAUSE';
+        mainBtn.classList.add('playing');
+        mainPlaying = true;
+      } else {
+        mainFrame.src = '';
+        mainIcon.textContent = '▶️';
+        mainLbl.textContent  = 'PLAY HER SONG';
+        mainBtn.classList.remove('playing');
+        mainPlaying = false;
+      }
+    }
+
+    /* ── Our Songs ── */
+    // YouTube video IDs for each song — searched and matched as best as possible
+    const songIds = {
+      irresponsible: 'Iy4J3OiDSnE',   // emei - irresponsible
+      babaji:        'RMvKMnvpHcQ',   // babaji ki booti go goa gone
+      pungi:         'z2nFMbLkdY8',   // pungi agent vinod
+      youandme:      'pZ_n0VcWLCk',   // you and me belong together mark turns
+      sacchi:        'Ts4J0FQTLHQ',   // sacchi mucchi harshdeep kaur
+      her:           'KeSXoEoQ5AA'    // her jvke
+    };
+
+    let currentSongKey = null;
+    let currentSongBtn = null;
+    const songsFrame   = document.getElementById('songs-yt');
+    const nowPlaying   = document.getElementById('now-playing');
+
+    function playSong(btn, key, label) {
+      // If same song clicked again — stop it
+      if (currentSongKey === key) {
+        songsFrame.src = '';
+        btn.classList.remove('active');
+        nowPlaying.textContent = '';
+        currentSongKey = null;
+        currentSongBtn = null;
+        btn.querySelector('.s-icon').textContent = '🎵';
+        return;
+      }
+
+      // Stop previous
+      if (currentSongBtn) {
+        currentSongBtn.classList.remove('active');
+        currentSongBtn.querySelector('.s-icon').textContent = '🎵';
+      }
+
+      // Play new
+      songsFrame.src = `https://www.youtube.com/embed/${songIds[key]}?autoplay=1&mute=0`;
+      btn.classList.add('active');
+      btn.querySelector('.s-icon').textContent = '▶️';
+      nowPlaying.textContent = '▶ Now Playing: ' + label;
+      currentSongKey = key;
+      currentSongBtn = btn;
+    }
+
+    /* ── Quote Flashcards ── */
+    const quotes = [
+      "Thankyou for listening to me endlessly",
+      "You are the one who makes college life bearable",
+      "Because of you my problems are already solved before being too much",
+      "The last year was tough but you were the one who stayed no matter what",
+      "To all the times you have been my anchor",
+      "This is to the one person who sees me going out of direction and brings me back",
+      "Thankyou for coping and listening to my obsessions",
+      "I don't know what the future holds but one thing is for sure — we are always gonna be together",
+      "We may not be sisters by blood but we are sisters by heart",
+      "This year lets make the people jealous of our bond even more jealous",
+      "I thought I wouldn't be able to find friends but then came you and it was my best decision to keep you",
+      "We started as strangers, turned into best friends, and somehow became each other's safe place.",
+      "Thankyou for being a therapist, bodyguard, personal comedian, and partner in crime — that too all unpaid.",
+      "Some friendships don't need daily conversations — just one 'I need you' and they appear.",
+      "You know it's real when silence between you feels as comfortable as laughter.",
+      "We don't have it all together, but together we have it all.",
+      "Behind every strong girl is another girl hyping her up and fixing her crown — that's you for me.",
+      "We've seen each other at our worst, laughed through our mess, and stayed anyway — that's real friendship.",
+      "Life gave me many people, but you are the one who feels like home.",
+      "If friendship had a definition, it would look like late-night talks, inside jokes, and you.",
+      "Happy 21st Maanu — here's to forever. 🍪🌙"
+    ];
+
+    const grid = document.getElementById('quote-grid');
+    quotes.forEach((q) => {
+      const card = document.createElement('div');
+      card.className = 'qcard';
+      card.innerHTML = `
+        <div class="qcard-window"><p>${q}</p></div>
+        <div class="qcard-flap">
+          <div class="qcard-flap-front">
+            <span class="card-cookie">🍪</span>
+            <span class="card-num">OPEN ME</span>
+          </div>
+        </div>
+        <div class="qcard-hint">tap to open</div>
+      `;
+      card.addEventListener('click', () => card.classList.toggle('open'));
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
